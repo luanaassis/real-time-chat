@@ -4,7 +4,7 @@ from classes.message import Message
 
 class MessageTests(unittest.TestCase):
 
-    def test_username(self):
+    def test_user_name(self):
         message = Message("user_name", "text_message", "chat_message")
 
         self.assertEqual(message.user_name, "user_name")
@@ -16,17 +16,15 @@ class MessageTests(unittest.TestCase):
         self.assertEqual(message.text, "text_message")
         self.assertNotEqual(message.text, "text")
 
-    def test_message_type(self):
-        message1 = Message("user_name", "text_message", "chat_message")
+    def test_login_message(self):
+        message = Message("user_name", "text_message", "login_message")
+        self.assertEqual(message.message_type, "login_message")
+        self.assertNotEqual(message.message_type, "chat_message")
 
-        self.assertEqual(message1.message_type, "chat_message")
-        self.assertNotEqual(message1.message_type, "login_message")
-
-        message2 = Message("user_name", "text_message", "login_message")
-
-        self.assertEqual(message2.message_type, "login_message")
-        self.assertNotEqual(message2.message_type, "chat_message")
-
+    def test_chat_message(self):
+        message = Message("user_name", "text_message", "chat_message")
+        self.assertEqual(message.message_type, "chat_message")
+        self.assertNotEqual(message.message_type, "login_message")
 
 if __name__ == '__main__':
     unittest.main()
